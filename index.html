@@ -72,7 +72,6 @@ body {
   text-align: center;
   padding: 120px 22px 80px;
   position: relative; overflow: hidden;
-  transform: translateZ(0);
 }
 .hero-glow {
   position: absolute; inset: 0; pointer-events: none;
@@ -80,11 +79,6 @@ body {
     rgba(10,132,255,0.12) 0%,
     rgba(94,92,230,0.06) 40%,
     transparent 70%);
-  will-change: transform;
-}
-#hero-content {
-  position: relative; z-index: 1;
-  transform: translateZ(0);
 }
 .hero-label {
   font-size: 17px; font-weight: 400;
@@ -152,10 +146,6 @@ body {
 }
 @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(48,209,88,0.5)} 50%{box-shadow:0 0 0 5px rgba(48,209,88,0)} }
 @keyframes heroUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-@keyframes slideInLeft { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
-@keyframes slideInRight { from{opacity:0;transform:translateX(20px)} to{opacity:1;transform:translateX(0)} }
-@keyframes progressFill { from{width:0%} to{width:var(--progress)} }
 
 /* ─── STATS BAR ─── */
 #stats {
@@ -183,8 +173,6 @@ body {
 /* ─── SECTION BASE ─── */
 .section {
   padding: 100px 22px;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
 }
 .section-center { text-align: center; }
 .section-label {
@@ -207,15 +195,6 @@ h2.section-title span { color: var(--blue); }
 .about-grid {
   max-width: 980px; margin: 60px auto 0;
   display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
-  opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
-  animation-delay: 0.2s;
-}
-.about-text {
-  animation: slideInLeft 0.8s ease forwards;
-}
-.metrics-2x2 {
-  animation: slideInRight 0.8s ease forwards;
 }
 .about-text p {
   font-size: 17px; color: var(--gray1); line-height: 1.7;
@@ -242,47 +221,21 @@ h2.section-title span { color: var(--blue); }
 .skill-tile {
   background: var(--white); border-radius: var(--radius);
   padding: 36px 32px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.6s ease;
-  opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .skill-tile:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 36px rgba(0,0,0,0.1);
 }
-.skill-tile:nth-child(1) { animation-delay: 0.1s; }
-.skill-tile:nth-child(2) { animation-delay: 0.2s; }
-.skill-tile:nth-child(3) { animation-delay: 0.3s; }
-.skill-tile:nth-child(4) { animation-delay: 0.4s; }
 .st-category {
   font-size: 12px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.08em; color: var(--blue); margin-bottom: 8px;
 }
 .st-title {
   font-size: 24px; font-weight: 700; letter-spacing: -0.01em;
-  color: var(--black); margin-bottom: 18px;
+  color: var(--black); margin-bottom: 10px;
 }
 .st-desc { font-size: 15px; color: var(--gray1); line-height: 1.6; margin-bottom: 18px; }
-.skill-progress {
-  margin-bottom: 16px;
-}
-.progress-label {
-  font-size: 13px; font-weight: 600; color: var(--black);
-  margin-bottom: 6px; display: flex; justify-content: space-between;
-}
-.progress-bar {
-  background: var(--gray5); border-radius: 980px;
-  height: 6px; overflow: hidden;
-}
-.progress-fill {
-  background: linear-gradient(90deg, var(--blue), #00a8ff);
-  height: 100%; border-radius: 980px;
-  width: 0%; animation: progressFill 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-.skill-tile:nth-child(1) .progress-fill { animation-delay: 0.6s; }
-.skill-tile:nth-child(2) .progress-fill { animation-delay: 0.8s; }
-.skill-tile:nth-child(3) .progress-fill { animation-delay: 1s; }
-.skill-tile:nth-child(4) .progress-fill { animation-delay: 1.2s; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag {
   font-size: 13px; font-weight: 400;
@@ -302,9 +255,6 @@ h2.section-title span { color: var(--blue); }
   min-height: 500px;
   background: var(--black);
   transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
-  animation-delay: 0.3s;
 }
 .project-hero:hover {
   transform: scale(1.01);
@@ -398,9 +348,6 @@ h2.section-title span { color: var(--blue); }
   display: grid; grid-template-columns: 1fr 1fr;
   min-height: 440px;
   transition: transform 0.3s, box-shadow 0.3s;
-  opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
-  animation-delay: 0.4s;
 }
 .project-tile-dark:hover {
   transform: scale(1.01);
@@ -533,9 +480,6 @@ h2.section-title span { color: var(--blue); }
   background: var(--black); border-radius: 24px;
   display: grid; grid-template-columns: 1fr 1fr;
   overflow: hidden; min-height: 380px;
-  opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
-  animation-delay: 0.3s;
 }
 .ch-left {
   padding: 60px 56px;
@@ -637,82 +581,24 @@ footer {
 .lbox-x:hover { color: var(--white); }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 1024px) {
-  .project-hero, .project-tile-dark { grid-template-columns: 1fr; }
-  .contact-hero { grid-template-columns: 1fr; }
-}
 @media (max-width: 900px) {
-  html { font-size: 16px; }
   .nav-links { display: none; }
   .nav-inner { padding: 0 16px; }
-  section { padding: 60px 16px; }
-  #hero { padding: 80px 16px 50px; }
-  .hero-name { font-size: clamp(42px, 8vw, 72px); }
-  .hero-title { font-size: clamp(24px, 5.5vw, 36px); }
-  .hero-sub { font-size: 17px; }
+  section { padding: 70px 16px; }
+  #hero { padding: 90px 16px 60px; }
   .stats-inner { grid-template-columns: 1fr 1fr; }
-  .about-grid,.exp-container { grid-template-columns: 1fr; gap: 40px; }
+  .about-grid,.exp-container,.contact-hero,.project-hero,.project-tile-dark { grid-template-columns: 1fr; }
   .skills-grid,.looking-tiles,.lang-tiles { grid-template-columns: 1fr 1fr; }
   .project-hero { min-height: auto; }
   .ph-gallery { min-height: 260px; }
   .ph-info,.pt-info { padding: 36px 28px; }
   .ch-left,.ch-right { padding: 36px 28px; }
   .footer-links { gap: 14px; }
-  h2.section-title { font-size: clamp(32px, 7vw, 48px); }
-  .stat-n { font-size: 28px; }
 }
-@media (max-width: 768px) {
-  .nav-cta { display: none; }
-  .hero-buttons { flex-direction: column; align-items: center; }
-  .btn-apple-primary, .btn-apple-ghost { width: 100%; max-width: 280px; justify-content: center; }
-  .metrics-2x2 { grid-template-columns: 1fr; }
-  .project-hero, .project-tile-dark { min-height: auto; }
-  .ph-info, .pt-info { padding: 32px 24px; }
-  .ph-title, .pt-title { font-size: clamp(28px, 6vw, 36px); }
-  .about-text p { font-size: 16px; }
-}
-@media (max-width: 640px) {
-  html { font-size: 15px; }
-  .skills-grid, .looking-tiles, .lang-tiles { grid-template-columns: 1fr; }
-  .stats-inner { grid-template-columns: 1fr; }
+@media (max-width: 540px) {
+  .skills-grid,.looking-tiles,.lang-tiles { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
   .titem { grid-template-columns: 1fr; gap: 4px; }
-  .exp-container { grid-template-columns: 1fr; gap: 32px; }
-  .hero-label { font-size: 15px; }
-  .hero-name { font-size: clamp(36px, 8vw, 56px); }
-  .hero-title { font-size: clamp(20px, 5vw, 28px); }
-  .hero-sub { font-size: 16px; }
-  h2.section-title { font-size: clamp(28px, 7vw, 40px); }
-  .section-body { font-size: 16px; }
-  .stat-box { padding: 18px 12px; }
-  .stat-n { font-size: 24px; }
-  .stat-l { font-size: 12px; }
-  .skill-tile { padding: 24px 20px; }
-  .st-title { font-size: 20px; }
-  .ph-gallery { grid-template-columns: 1fr; }
-  .g-thumb:first-child { grid-column: 1; }
-  .contact-hero { min-height: auto; }
-  .ch-title { font-size: 32px; }
-  .contact-link { padding: 12px 14px; }
-  .ml-cards { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  html { font-size: 14px; }
-  :root { --radius: 12px; }
-  .nav-links { gap: 0; }
-  .section { padding: 50px 12px; }
-  #hero { padding: 70px 12px 40px; }
-  .hero-buttons { gap: 8px; }
-  .btn-apple-primary, .btn-apple-ghost { padding: 10px 18px; font-size: 15px; }
-  .exp-col h3, .nav-inner { padding: 0 0; }
-  .footer-links { flex-direction: column; gap: 10px; }
-  .footer-links a { display: block; }
-  h2.section-title { line-height: 1.1; }
-  .about-grid { gap: 24px; }
-  .metric-tile { min-height: 90px; padding: 20px; }
-  .mt-num { font-size: 28px; }
-  .ph-badge, .pt-badge { font-size: 10px; }
-  .ml-cards { grid-template-columns: 1fr; }
-  .ml-window { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 }
 </style>
 </head>
@@ -742,26 +628,24 @@ footer {
       <li><a href="#looking">Recherche</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="mailto:bejaouiziad@gmail.com">Me contacter ›</a>
+    <a class="nav-cta" href="/cdn-cgi/l/email-protection#a1c3c4cbc0ced4c8dbc8c0c5e1c6ccc0c8cd8fc2cecc">Me contacter ›</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero" id="top">
-  <div class="hero-glow" id="hero-glow"></div>
-  <div id="hero-content">
-    <p class="hero-label">Formation Data Analyst · RNCP 6 · Simplon Lyon</p>
-    <h1 class="hero-name">Ziad Bejaoui</h1>
-    <p class="hero-title">Data Analyst.</p>
-    <p class="hero-sub">SQL · Python · Power BI · Machine Learning.<br>Un profil hybride Business & Data au service de la décision.</p>
-    <div class="hero-buttons">
-      <a href="#projects" class="btn-apple-primary">Voir les projets</a>
-      <a href="mailto:bejaouiziad@gmail.com" class="btn-apple-ghost">Me contacter</a>
-    </div>
-    <div class="hero-avail">
-      <span class="hero-dot"></span>
-      Disponible — stage · alternance · CDI/CDD
-    </div>
+  <div class="hero-glow"></div>
+  <p class="hero-label">Formation Data Analyst · RNCP 6 · Simplon Lyon</p>
+  <h1 class="hero-name">Ziad Bejaoui</h1>
+  <p class="hero-title">Data Analyst.</p>
+  <p class="hero-sub">SQL · Python · Power BI · Machine Learning.<br>Un profil hybride Business & Data au service de la décision.</p>
+  <div class="hero-buttons">
+    <a href="#projects" class="btn-apple-primary">Voir les projets</a>
+    <a href="/cdn-cgi/l/email-protection#bbd9ded1dad4ced2c1d2dadffbdcd6dad2d795d8d4d6" class="btn-apple-ghost">Me contacter</a>
+  </div>
+  <div class="hero-avail">
+    <span class="hero-dot"></span>
+    Disponible — stage · alternance · CDI/CDD
   </div>
 </section>
 
@@ -828,10 +712,6 @@ footer {
       <div class="st-category">SQL & Données</div>
       <div class="st-title">Bases de données</div>
       <p class="st-desc">Extraction, transformation, modélisation en étoile OLTP→OLAP. Requêtes complexes, jointures avancées, procédures stockées et optimisation des performances.</p>
-      <div class="skill-progress">
-        <div class="progress-label">Maîtrise <span>95%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--progress:95%"></div></div>
-      </div>
       <div class="tags">
         <span class="tag">SQL Server</span>
         <span class="tag">Modèle en étoile</span>
@@ -844,10 +724,6 @@ footer {
       <div class="st-category">BI & Reporting</div>
       <div class="st-title">Visualisation</div>
       <p class="st-desc">Dashboards interactifs multi-axes, modélisation DAX, reporting automatisé et publication cloud sécurisée. Conception centrée utilisateur.</p>
-      <div class="skill-progress">
-        <div class="progress-label">Maîtrise <span>90%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--progress:90%"></div></div>
-      </div>
       <div class="tags">
         <span class="tag">Power BI</span>
         <span class="tag">DAX</span>
@@ -859,10 +735,6 @@ footer {
       <div class="st-category">Python & Machine Learning</div>
       <div class="st-title">Data Science</div>
       <p class="st-desc">Analyse exploratoire, NLP, machine learning supervisé et non supervisé, déploiement d'applications interactives et APIs REST.</p>
-      <div class="skill-progress">
-        <div class="progress-label">Maîtrise <span>85%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--progress:85%"></div></div>
-      </div>
       <div class="tags">
         <span class="tag">Pandas · NumPy</span>
         <span class="tag">Scikit-learn</span>
@@ -877,10 +749,6 @@ footer {
       <div class="st-category">Outils & Méthodes</div>
       <div class="st-title">Environnement pro</div>
       <p class="st-desc">Versioning, méthodologie Agile/Scrum, intégration ERP & CRM enterprise, REST APIs, web scraping et manipulation JSON.</p>
-      <div class="skill-progress">
-        <div class="progress-label">Maîtrise <span>88%</span></div>
-        <div class="progress-bar"><div class="progress-fill" style="--progress:88%"></div></div>
-      </div>
       <div class="tags">
         <span class="tag">Git · GitHub</span>
         <span class="tag">REST APIs · JSON</span>
@@ -1003,6 +871,71 @@ footer {
                 <span class="ml-chip">Décennie OHE</span>
                 <span class="ml-chip">Langue OHE</span>
                 <span class="ml-chip">Popularité log</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini Projet -->
+  <div class="project-tiles" style="margin-top:16px;">
+    <div class="project-tile-dark" style="background:linear-gradient(135deg,#eaf2fb 0%,#f5f8fc 100%);border:1px solid rgba(39,120,186,0.18);">
+      <div class="pt-info">
+        <div>
+          <div class="pt-badge" style="background:rgba(39,120,186,0.12);border-color:rgba(39,120,186,0.4);color:#2778ba;">Mini Projet · Python · Power BI · Data Consulting</div>
+          <div class="pt-title" style="color:#0d1f30;">Loop Consulting<br>Business Case D3M</div>
+          <div class="pt-sub" style="color:#4a6278;">Analyse des salaires dans les métiers de la data (2020–2022). 607 emplois, 50 pays analysés. Étude complète avec dashboard Power BI interactif et recommandations consulting.</div>
+          <div class="pt-highlight" style="background:rgba(39,120,186,0.08);border-left:3px solid #2778ba;">
+            <span style="color:#1a2a3a;display:block;"><strong style="color:#0d1f30;">Insights clés :</strong> USA = 60 %+ des offres · Remote-first 62,77 % · Data Engineer profil prioritaire<br>
+            Médiane globale : <strong style="color:#0d1f30;">101 000 $</strong> — grandes entreprises mieux rémunératrices</span>
+          </div>
+          <div class="pt-tags">
+            <span class="pt-tag" style="background:rgba(39,120,186,0.10);color:#2778ba;border-color:rgba(39,120,186,0.25);">Python · Pandas</span>
+            <span class="pt-tag" style="background:rgba(39,120,186,0.10);color:#2778ba;border-color:rgba(39,120,186,0.25);">Power BI · DAX</span>
+            <span class="pt-tag" style="background:rgba(39,120,186,0.10);color:#2778ba;border-color:rgba(39,120,186,0.25);">Data Viz</span>
+            <span class="pt-tag" style="background:rgba(39,120,186,0.10);color:#2778ba;border-color:rgba(39,120,186,0.25);">Consulting</span>
+            <span class="pt-tag" style="background:rgba(39,120,186,0.10);color:#2778ba;border-color:rgba(39,120,186,0.25);">Storytelling</span>
+          </div>
+        </div>
+        <div class="pt-links">
+          <a href="loop_presentation.html" target="_blank" class="pt-btn" style="background:rgba(39,120,186,0.12);border-color:rgba(39,120,186,0.5);color:#2778ba;">Voir la présentation ›</a>
+        </div>
+      </div>
+      <div class="pt-visual" style="background:#e8f1fa;">
+        <div class="ml-window" style="background:#ffffff;border:1px solid rgba(39,120,186,0.15);">
+          <div class="ml-titlebar" style="background:#f0f5fb;border-bottom:1px solid rgba(39,120,186,0.12);">
+            <div class="tl-dot" style="background:#ff5f57"></div>
+            <div class="tl-dot" style="background:#febc2e"></div>
+            <div class="tl-dot" style="background:#28c840"></div>
+            <span style="font-size:10px;color:#6b87a0;margin-left:8px;">Loop · Business Case D3M — Salaires Data</span>
+          </div>
+          <div class="ml-body" style="padding:14px;background:#fff;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+              <div style="background:#f0f5fb;border:1px solid rgba(39,120,186,0.15);border-radius:6px;padding:10px;">
+                <div style="font-size:1.3rem;font-weight:700;color:#2778ba;">607</div>
+                <div style="font-size:0.6rem;color:#6b87a0;text-transform:uppercase;letter-spacing:1px;">Emplois analysés</div>
+              </div>
+              <div style="background:#f0f5fb;border:1px solid rgba(39,120,186,0.15);border-radius:6px;padding:10px;">
+                <div style="font-size:1.3rem;font-weight:700;color:#2778ba;">50</div>
+                <div style="font-size:0.6rem;color:#6b87a0;text-transform:uppercase;letter-spacing:1px;">Pays couverts</div>
+              </div>
+              <div style="background:#f0f5fb;border:1px solid rgba(39,120,186,0.15);border-radius:6px;padding:10px;">
+                <div style="font-size:1.3rem;font-weight:700;color:#2778ba;">101K$</div>
+                <div style="font-size:0.6rem;color:#6b87a0;text-transform:uppercase;letter-spacing:1px;">Salaire médian</div>
+              </div>
+              <div style="background:#f0f5fb;border:1px solid rgba(39,120,186,0.15);border-radius:6px;padding:10px;">
+                <div style="font-size:1.3rem;font-weight:700;color:#2778ba;">62%</div>
+                <div style="font-size:0.6rem;color:#6b87a0;text-transform:uppercase;letter-spacing:1px;">Full remote</div>
+              </div>
+            </div>
+            <div style="background:#f0f5fb;border-radius:6px;padding:10px;border-left:3px solid #2778ba;">
+              <div style="font-size:0.6rem;color:#6b87a0;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Top profils par salaire</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#1a2a3a;"><span>Data Engineer</span><span style="color:#2778ba;font-weight:600;">$130K</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#1a2a3a;"><span>Data Scientist</span><span style="color:#2778ba;font-weight:600;">$122K</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:#1a2a3a;"><span>ML Engineer</span><span style="color:#2778ba;font-weight:600;">$118K</span></div>
               </div>
             </div>
           </div>
@@ -1184,11 +1117,11 @@ footer {
       <div class="avail-tag">Ouvert à toutes opportunités</div>
     </div>
     <div class="ch-right">
-      <a href="mailto:bejaouiziad@gmail.com" class="contact-link">
+      <a href="/cdn-cgi/l/email-protection#2c4e49464d43594556454d486c4b414d4540024f4341" class="contact-link">
         <span class="cl-icon">✉</span>
         <div class="cl-text">
           <span class="cl-label">Email</span>
-          <span class="cl-value">bejaouiziad@gmail.com</span>
+          <span class="cl-value"><span class="__cf_email__" data-cfemail="52303738333d273b283b333612353f333b3e7c313d3f">[email&#160;protected]</span></span>
         </div>
       </a>
       <a href="tel:0673882155" class="contact-link">
@@ -1231,7 +1164,7 @@ footer {
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const shots = [
   { src: "Dashboardprojet1captureaccueil.png",  cap: "Accueil Dashboard T&M — Vue générale & KPIs consolidés" },
   { src: "Dashboardprojet1pagevente.png",       cap: "Analyse des Ventes — CA, marges, top/flop produits" },
@@ -1268,105 +1201,4 @@ document.getElementById('lbox').addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (!document.getElementById('lbox').classList.contains('open')) return;
   if (e.key === 'Escape') lbClose();
-  if (e.key === 'ArrowLeft') lbPrev();
-  if (e.key === 'ArrowRight') lbNext();
-});
-
-// === NAV SCROLL EFFECT ===
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('nav');
-  if (window.scrollY > 10) {
-    nav.style.background = 'rgba(255,255,255,0.88)';
-  } else {
-    nav.style.background = 'rgba(255,255,255,0.8)';
-  }
-});
-
-// === PARALLAX EFFECT ON HERO ===
-const hero = document.getElementById('hero');
-const heroGlow = document.getElementById('hero-glow');
-const heroContent = document.getElementById('hero-content');
-
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const heroHeight = hero.offsetHeight;
-  
-  if (scrollY < heroHeight) {
-    const parallaxAmount = scrollY * 0.5;
-    if (heroGlow) heroGlow.style.transform = `translateY(${parallaxAmount}px)`;
-    if (heroContent) heroContent.style.transform = `translateY(${parallaxAmount * 0.3}px)`;
-  }
-});
-
-// === INTERSECTION OBSERVER FOR SCROLL ANIMATIONS ===
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.animationPlayState = 'running';
-      // Optional: unobserve to avoid re-triggering
-      // observer.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-// Observe all sections and cards for animations
-document.querySelectorAll('.section, .skill-tile, .project-hero, .project-tile-dark, .about-grid, .contact-hero').forEach(el => {
-  observer.observe(el);
-});
-
-// Trigger progress bars when they come into view
-const progressObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const fills = entry.target.querySelectorAll('.progress-fill');
-      fills.forEach(fill => {
-        fill.style.animationPlayState = 'running';
-      });
-      progressObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-
-document.getElementById('skills')?.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.skill-tile').forEach(tile => progressObserver.observe(tile));
-});
-
-// Ensure progress bars start with animation paused
-document.querySelectorAll('.progress-fill').forEach(fill => {
-  fill.style.animationPlayState = 'paused';
-});
-
-// Observe on page load
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.skill-tile').forEach(tile => progressObserver.observe(tile));
-});
-
-// === SMOOTH SCROLL ANCHOR LINKS ===
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href !== '#' && href !== '#top') {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  });
-});
-
-// === MOBILE TOUCH OPTIMIZATION ===
-if ('ontouchstart' in window) {
-  document.body.classList.add('touch-device');
-  document.querySelectorAll('a, button').forEach(el => {
-    el.style.minHeight = '44px';
-  });
-}
-</script>
-</body>
-</html>
+  if (e.key === 'ArrowLeft') lbPrev()
